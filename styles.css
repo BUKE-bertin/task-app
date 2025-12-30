@@ -1,0 +1,83 @@
+:root{
+  --bg: #0f1724; /* deep bg */
+  --surface: linear-gradient(180deg,#0b1220 0%, #08101a 100%);
+  --card: #0b1220;
+  --panel:#0f1728;
+  --muted: #9aa4b2;
+  --accent: #60a5fa;
+  --accent-2: #7c3aed;
+  --success: #34d399;
+  --urgent: #fb7185;
+  --low: #f59e0b;
+  --glass: rgba(255,255,255,0.04);
+  --radius: 14px;
+  --shadow: 0 6px 18px rgba(2,6,23,0.6);
+  --maxw: 920px;
+}
+[data-theme="light"]{
+  --bg: #f7f7fb;
+  --surface: linear-gradient(180deg,#ffffff 0%, #f8fafc 100%);
+  --card: #ffffff;
+  --panel: #ffffff;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --accent-2: #7c3aed;
+  --success: #10b981;
+  --urgent: #ef4444;
+  --low: #f59e0b;
+  --glass: rgba(0,0,0,0.03);
+  --shadow: 0 6px 18px rgba(16,24,40,0.06);
+  color: #0b1220;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e6eef6}
+body{background:radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.12), transparent), #071226;display:flex;justify-content:center;padding:24px}
+
+.app-shell{width:100%;max-width:var(--maxw);display:flex;flex-direction:column;gap:12px}
+.app-header{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow)}
+.app-header h1{margin:0;font-size:1.25rem;letter-spacing:0.2px}
+.install-btn{background:transparent;border:1px solid var(--accent);color:var(--accent);padding:8px 12px;border-radius:10px}
+
+.app-main{display:grid;grid-template-columns:1fr 360px;gap:18px}
+@media (max-width:980px){.app-main{grid-template-columns:1fr}}
+
+.panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.03);box-shadow:var(--shadow)}
+
+.task-form{display:flex;gap:10px;align-items:center}
+.task-form input[type="text"], .task-form input[type="datetime-local"], .task-form select{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 12px;border-radius:10px;color:inherit}
+.task-form input[type="text"]{flex:1}
+.task-form button{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#021124;border:none;padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer}
+.task-form #enableNotifBtn{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:8px 10px;border-radius:10px}
+
+.controls{display:flex;gap:12px;padding-top:6px;color:var(--muted);align-items:center}
+
+.task-list{list-style:none;padding:0;margin:12px 0 0}
+.task-item{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;margin-bottom:10px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02);transition:transform .18s,box-shadow .18s}
+.task-item:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(2,6,23,0.7)}
+.task-item .title{flex:1;font-weight:600}
+.task-item .meta{font-size:0.85rem;color:var(--muted)}
+.task-item.done{opacity:0.6;text-decoration:line-through}
+.task-item button{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:1rem}
+
+.task-item.urgent{border-left:4px solid var(--urgent)}
+.task-item.low{border-left:4px solid var(--low)}
+.task-item .badge{padding:4px 8px;border-radius:999px;font-size:0.75rem}
+
+.due-soon{box-shadow:0 6px 18px rgba(251,113,133,0.08)}
+
+.history-section{margin-top:10px}
+.history-chart-wrap{background:var(--glass);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+.history-list{max-height:220px;overflow:auto;padding-left:14px;margin-top:8px;color:var(--muted)}
+
+.app-footer{color:var(--muted);text-align:center;padding:8px;font-size:0.9rem}
+
+/* small helpers */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+@media (max-width:600px){
+  body{padding:14px}
+  .app-header h1{font-size:1.05rem}
+  .app-main{grid-template-columns:1fr}
+  .task-form{flex-direction:column;align-items:stretch}
+  .task-form input, .task-form select, .task-form input[type="datetime-local"]{width:100%}
+}

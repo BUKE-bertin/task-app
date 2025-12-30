@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gestionnaire de tâches léger</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0d6efd">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- On veut mettre le favicon -->
+   
+
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <h1>Mes tâches</h1>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button id="themeToggle" class="theme-toggle" aria-label="Basculer thème">🌙</button>
+        <button id="installBtn" class="install-btn" aria-hidden="true">Installer</button>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <section class="panel">
+        <form id="taskForm" class="task-form">
+          <input id="taskInput" type="text" placeholder="Ajouter une tâche..." aria-label="Nouvelle tâche">
+          <label for="taskPriority" class="sr-only">Priorité</label>
+          <select id="taskPriority" aria-label="Priorité">
+            <option value="urgent">Urgent</option>
+            <option value="normal" selected>Normal</option>
+            <option value="low">Moins urgent</option>
+          </select>
+          <!-- faut changer l'icone de date en blanc -->
+          <label for="taskTime" class="sr-only">Heure</label>
+          <input id="taskTime" type="datetime-local" aria-label="Heure prévue">
+          <button type="submit">Ajouter</button>
+          <button type="button" id="enableNotifBtn">Activer notifications</button>
+        </form>
+
+        <div class="controls">
+          <label><input type="checkbox" id="showDone"> Afficher terminées</label>
+          <label class="sync-toggle">Sync Firestore <input type="checkbox" id="syncToggle"></label>
+        </div>
+
+        <ul id="taskList" class="task-list" aria-live="polite"></ul>
+      </section>
+
+      <aside class="panel" id="historySection">
+        <h2>Historique & Graphiques</h2>
+        <div class="history-controls">
+          <label>Plage:
+            <select id="historyRange">
+              <option value="7">7 jours</option>
+              <option value="14" selected>14 jours</option>
+              <option value="30">30 jours</option>
+            </select>
+          </label>
+        </div>
+        <div class="history-chart-wrap" style="height:260px;">
+          <canvas id="historyChart"></canvas>
+        </div>
+        <h3>Journaux récents</h3>
+        <ul id="historyList" class="history-list"></ul>
+      </aside>
+    </main>
+
+    <footer class="app-footer">
+      <span id="status">Statut: hors-ligne</span>
+    </footer>
+  </div>
+
+  <footer class="app-footer">
+    <span id="status">Statut: hors-ligne</span>
+  </footer>
+
+  <script src="firebase.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+  <script src="history.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
